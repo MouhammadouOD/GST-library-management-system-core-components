@@ -1,0 +1,12 @@
+{
+  "name": "gst-library-management-system-core-components",
+  "version": "1.0.0",
+  "description": "GoMyCode checkpoint - Library Management System Core Components (JS, ES modules)",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node tests.js"
+  },
+  "license": "MIT"
+}
