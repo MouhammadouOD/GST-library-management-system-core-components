@@ -98,10 +98,14 @@ console.log('LibrarySystem (dependency injection)');
     flatLibrary.addBook(book);
 
     const issueDate = new Date('2026-01-01');
-    const lateReturnDate = new Date('2026-01-20'); // 5 days late on a 14-day loan
+    const lateReturnDate = new Date('2026-01-18'); // 3 days late on a 14-day loan
     flatLibrary.issueBook('s1', 'ISBN-1', issueDate);
     const loan = flatLibrary.returnBook('s1', 'ISBN-1', lateReturnDate);
 
+    // Deliberately chosen so the two strategies DIVERGE for the same input:
+    // DailyFineStrategy(1) would give 3 (3 days x 1), FlatFineStrategy(5) gives
+    // 5 regardless of days late. If LibrarySystem silently ignored the injected
+    // strategy and hardcoded DailyFineStrategy(1), this assertion would fail.
     assert.strictEqual(loan.fine, 5); // flat fee regardless of how many days late
   });
 
